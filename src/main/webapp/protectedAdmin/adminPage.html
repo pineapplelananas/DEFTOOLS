@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Page d'administration</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="protectedAdmin/css/adminPagecss.css" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+        <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+        <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <script>
+            webshims.setOptions('forms-ext', {types: 'date'});
+            webshims.polyfill('forms forms-ext');
+        </script>
+        <script>
+            google.charts.load('current', {'packages': ['corechart']});
+            //fonction qui va permettre la création des 3 piecharts
+            function launchTables() {
+                showSalesByProductCat();
+                showSalesByGeo();
+                showSalesByCustomer();
+            }
+
+            //fonction qui va créé le piechart "Chiffre d'affaires par catégorie de produits"
+            function showSalesByProductCat() {
+
+                $.ajax({
+                    async: false,
+                    url: "salesByProductCatServlet",
+                    dataType: "json",
+                    data: {"dateDebut": $("#dateDepart").val(), "dateFin": $("#dateFin").val()},
+                    error: showError,
+                    success: function (result) {
+                        drawChart(result, "product");
+                    }
+
+                });
+
+            }
+
+            //fonction qui va créé le piechart "Chiffre d'affaires par zone géographique"
+            function showSalesByGeo() {
+                $.ajax({
+                    async: false,
+                    url: "salesByGeoServlet",
+                    data: {"dateDebut": $("#dateDepart").val(), "dateFin": $("#dateFin").val()},
+                    dataType: "json",
+                    success: function (result) {
+                        drawChart(result, "geo");
+                    },
+                    error: showError
+                });
+
+            }
+
+            //fonction qui va créé le piechart "Chiffre d'affaires par clients"
+            function showSalesByCustomer() {
+                $.ajax({
+                    async: false,
+                    url: "salesByCustomerServlet",
+                    //url: "/WebServ6/salesByCustomerServlet",
+                    data: {"dateDebut": $("#dateDepart").val(), "dateFin": $("#dateFin").val()},
+                    dataType: "json",
+                    success: function (result) {
+                        drawChart(result, "customer");
+                    },
+                    error: showError
+                });
+            }
+
+
+            // Fonction qui traite les erreurs de la requête
+            function showError(xhr, status, message) {
+                alert(JSON.parse(xhr.responseText).message);
+            }
+
+            //fonction qui permet la création d'un piechart
+            function drawChart(result, type) {
+                //création de la Data Table
+                var data = new google.visualization.DataTable();
+
+                //ajout de deux colonnes (leur nom n'est pas important et ne se voit pas sur le rendu html)
+                data.addColumn('string', 'Code produit');
+                data.addColumn('number', 'revenue');
+                //on ajoute n lignes (n étant la longueur de la liste de résultats)
+                data.addRows(result.length);
+                for (var i = 0; i < result.length; i++) {
+                    data.setValue(i, 0, result[i].product_code);
+                    data.setValue(i, 1, result[i].revenues);
+                }
+                //on définit des options
+                //s'il s'agit du piechart produit
+                if (type === "product") {
+                    //on lui donne un titre particulier
+                    var options = {'title': "Chiffre d'affaires par type de produit",
+                        'width': 400,
+                        'height': 300};
+                    //on le dessine au bon endroit
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart_product'));
+                    //on le dessine
+                    chart.draw(data, options);
+                    //idem pour la zone géographique
+                } else if (type === "geo") {
+                    var options = {'title': "Chiffre d'affaires par zone géographique",
+                        'width': 400,
+                        'height': 300};
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart_geo'));
+                    chart.draw(data, options);
+                    //idem pour les clients
+                } else if (type === "customer") {
+                    var options = {'title': "Chiffre d'affaires par client",
+                        'width': 400,
+                        'height': 300};
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart_customer'));
+                    chart.draw(data, options);
+                }
+            }
+        </script>
+    </head>
+    <h1>Bienvenue dans la page d'administration</h1>
+    <h2>Selectionnez une période pour connaître les statistiques associées</h2>
+    <form id="codeForm" name="form">
+        <fieldset>
+            Date de début :<input id="dateDepart" type="date" name="dateDepart"><br/>
+            Date de fin :<input id="dateFin" type="date" name="dateFin"><br/>
+            <button id="entree" onclick="launchTables();return false;">Afficher</button>
+        </fieldset>
+    </form>
+    <div style="display: inline-block; margin-top:30px" id="piechart_product"></div>
+    <div style="display: inline-block" id="piechart_geo"></div>
+    <div style="display: inline-block" id="piechart_customer"></div>
+    <form class="logout" name="logoutForm" action="logServlet" method="post">
+        <input type="hidden" name="action" value="logout">
+        <button id="logout" onclick="return confirm('Êtes-vous sûr de vouloir vous deconnecter ?')" >Deconnexion</button>
+    </form>
+</html>

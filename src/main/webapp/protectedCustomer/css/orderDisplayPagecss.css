@@ -1,0 +1,109 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+.info {
+    position: relative;
+    z-index: 1;
+    background: #4CAF50;
+    color:white;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 30px 200px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+h3 {
+    padding:0;
+    margin:0;
+}
+
+
+.addEncart, .errorMessage {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 30px 200px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.addEncart input, .addEncart select, .errorMessage {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.addEncart button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 10px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+.addEncart button:hover,.addEncart button:active,.addEncart button:focus {
+    background: #43A047;
+}
+.addEncart .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+.addEncart .message button {
+    color: #4CAF50;
+    text-decoration: none;
+}
+.addEncart .register-form {
+    display: none;
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 10px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+a.button:hover, a.button:focus, a.button:active  {
+    background-color: #6fc773; 
+
+}
+#update {
+    background:#4CAF50;
+    color:white;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+}
+
+#update:hover, #update:focus, #update:active  {
+    background-color: #6fc773; 
+
+}

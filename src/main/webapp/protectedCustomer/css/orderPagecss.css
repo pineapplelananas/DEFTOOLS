@@ -1,0 +1,115 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.table {
+
+    position: relative;
+    z-index: 1;
+    font-family: sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 115%;
+    overflow: auto;
+    width: auto;
+    margin: 0 auto 100px;
+}
+th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: normal;
+    padding: 20px 30px;
+    text-align: center;
+}
+td {
+    background-color: rgb(238, 238, 238);
+    color: rgb(111, 111, 111);
+    padding: 20px 30px;
+}
+
+
+h1,h2,h3 {
+    font-family: "Roboto", sans-serif;
+}
+
+.addEncart, .errorMessage {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 30px 200px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.addEncart input, .addEncart select, .errorMessage {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.addEncart button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 10px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+.addEncart .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+.addEncart .message button {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+#addButton {
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+}
+#addButton:hover, #addButton:focus, #addButton:active  {
+    background-color: #7cce7f; 
+    color: white;
+}
+.addEncart .register-form {
+    display: none;
+}
+
+
+button {
+    border-radius: 2px;
+    border:none;
+    display:inline-block;
+    padding: 15px 32px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    background-color:#7cce7f; 
+}
+button:hover,button:active,button:focus {
+    background-color: #dddddd; 
+    color: black;
+}
+
+a {
+    text-decoration: none;
+    color:inherit;
+}
+.logout {
+    position:absolute;
+    top:0;
+    right:0;
+    margin-top:20px;
+    margin-right:20px;
+}

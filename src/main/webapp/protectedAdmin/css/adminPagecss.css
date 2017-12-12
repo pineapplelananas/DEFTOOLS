@@ -1,0 +1,68 @@
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+
+body {
+    margin-left:2%;
+}
+h1 {
+    margin-top:3%;
+    border-bottom: 3px solid black;
+}
+
+h2 {
+    margin-top:5%;
+}
+
+h1, h2 {
+    font-family: "Roboto", sans-serif;
+}
+
+fieldset {
+    width:40%;
+    padding:15px;
+    background-color:#4CAF50;
+    font-family:"Roboto",sans-serif;
+    color:white;
+}
+
+input {
+    margin:10px;
+    padding-left:10px;
+}
+
+.logout {
+    position:absolute;
+    top:0;
+    right:0;
+    margin-right:20px;
+
+}
+
+button {
+    border-radius: 2px;
+    border:none;
+    display:inline-block;
+    margin-top:20px;
+    padding: 15px 32px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+}
+button#entree {
+    background-color:white;
+}
+button#entree:hover,button#entree:active,button#entree:focus {
+    background-color: #dddddd; 
+    color: black;
+}
+
+button#logout {
+    background-color:#4CAF50; 
+    color:white;
+}
+
+button#logout:hover,button#logout:active,button#logout:focus {
+    background-color: #dddddd; 
+    color: black;
+}
+
